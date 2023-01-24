@@ -1,0 +1,28 @@
+df <- transposed_zscore_final_csf
+>   dist_matrix <- dist(df[, -1]) # create distance matrix, exclude first column (names)
+>   fit <- hclust(dist_matrix, method = "ward.D2") # perform clustering using "ward.D2" linkage method
+>   # Plot the dendrogram
+> plot(as.dendrogram(fit))
+>   # Create 8 clusters
+>           clusters <- cutree(fit, k = 8)
+>           # Add the cluster information to the original data frame
+>                   df_clustered <- cbind(df, clusters)
+>                   # Create output for each cluster
+>                           df_cluster1 <- df_clustered %>% filter(clusters == 1)
+>                           df_cluster2 <- df_clustered %>% filter(clusters == 2)
+>                           df_cluster3 <- df_clustered %>% filter(clusters == 3)
+>                           df_cluster4 <- df_clustered %>% filter(clusters == 4)
+>                           df_cluster5 <- df_clustered %>% filter(clusters == 5)
+>                           df_cluster6 <- df_clustered %>% filter(clusters == 6)
+>                           df_cluster7 <- df_clustered %>% filter(clusters == 7)
+>                           df_cluster8 <- df_clustered %>% filter(clusters == 8)
+>                           # Create different colored boxes around the chosen clusters
+>             rect.dendrogram(as.dendrogram(fit), k = 8, border = c("red", "red", "red", "red", "red","red","red", "red" ), lower_rect = 0)
+>                           write.csv(df_cluster1, file = "CSF Final plasma cluster 1.csv")
+>                           write.csv(df_cluster2, file = "CSF Final plasma cluster 2.csv")
+>                           write.csv(df_cluster3, file = "CSF Final plasma cluster 3.csv")
+>                           write.csv(df_cluster4, file = "CSF Final plasma cluster 4.csv")
+>                           write.csv(df_cluster5, file = "CSF Final plasma cluster 5.csv")
+>                      write.csv(df_cluster6, file = "CSF Final plasma cluster 6.csv")
+>                           write.csv(df_cluster7, file = "CSF Final plasma cluster 7.csv")
+>                           write.csv(df_cluster8, file = "CSF Final plasma cluster 8.csv")
